@@ -33,8 +33,8 @@ async function sendMessage(message="Booking Available",chatId="738318805"){
 
 
 async function checkBooking(location,title,code){
-    const res=await axios.get(`https://notify-booking.vercel.app/bms/${location}/${title}/${code}`)
-    .then(function (response) {
+    const res=await axios.get(`https://bms-booking.vercel.app/bms/${location}/${title}/${code}`)
+    .then((response)=> {
         return response.data.bookingAvailable;
     })
     .catch(function (error) {
