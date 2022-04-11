@@ -7,17 +7,17 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-app.get("/notify/:location/:title/:code", async (req, res, next) => {
+app.get("/notify/:location/:title/:code/:telegramId", async (req, res, next) => {
     const params=req.params;
     const available=await checkBooking(params.location,params.title,params.code)
     if(available){
-      sendMessage();
+      sendMessage("Booking Opened for params.title 🎬 ✅✅✅",params.telegramId);
     }
     res.json({"bookingAvailable":!!available});
 });
 
 
-async function sendMessage(message="Booking Available",chatId="738318805"){
+async function sendMessage(message,chatId){
     const resp=await axios.post(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,{
         chat_id:chatId,
         text:message
