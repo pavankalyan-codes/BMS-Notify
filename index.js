@@ -11,7 +11,7 @@ app.get("/notify/:location/:title/:code/:telegramId", async (req, res, next) => 
     const params=req.params;
     const available=await checkBooking(params.location,params.title,params.code)
     if(available){
-      sendMessage("Booking Opened for params.title 🎬 ✅✅✅",params.telegramId);
+      sendMessage(`Booking Opened for ${params.title.toUpperCase()} 🎬 ✅✅✅`,params.telegramId);
     }
     res.json({"bookingAvailable":!!available});
 });
