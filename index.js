@@ -20,7 +20,7 @@ app.get("/notify/:theatre/:movie/:location/:locationCode/:movieCode/:telegramId"
     const params=req.params;
     const available=await checkTheatreForMovie(params.theatre,params.movie,params.location,params.locationCode,params.movieCode)
     if(available){
-      sendMessage(`Booking Opened for ${params.title.toUpperCase()} 🎬 ✅✅✅ in ${theatre}`,params.telegramId);
+      sendMessage(`Booking Opened for ${params.movie.toUpperCase()} 🎬 ✅✅✅ in ${params.theatre}`,params.telegramId);
     }
     res.json({"bookingAvailable":!!available});
 });
